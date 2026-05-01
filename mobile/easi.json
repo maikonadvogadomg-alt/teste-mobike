@@ -1,4 +1,447 @@
+
+
+
 {
+  "projeto": "DevMobile",
+  "objetivo": "Desacoplar o app mobile do servidor Replit e preparar uma versão APK local",
+  "prioridades": [
+    {
+      "ordem": 1,
+      "titulo": "Limpeza estrutural",
+      "itens": [
+        "Remover mockup-sandbox",
+        "Remover mobile/.expo",
+        "Remover api-server/dist"
+      ]
+    },
+    {
+      "ordem": 2,
+      "titulo": "Desacoplamento de backend remoto",
+      "itens": [
+        "Revisar .env",
+        "Revisar useApiBase",
+        "Eliminar dominio remoto padrao",
+        "Criar fallback local/offline"
+      ]
+    },
+    {
+      "ordem": 3,
+      "titulo": "Desativacao controlada de recursos remotos",
+      "itens": [
+        "Terminal remoto",
+        "Preview remoto",
+        "GitHub via backend",
+        "Banco remoto",
+        "Busca web via backend",
+        "Proxy de IA"
+      ]
+    },
+    {
+      "ordem": 4,
+      "titulo": "Preparacao para APK",
+      "itens": [
+        "Revisar app.json",
+        "Revisar permissoes Android",
+        "Validar dependencias",
+        "Build com EAS"
+      ]
+    }
+  ],
+  "arquivosCriticos": [
+    "mobile/.env",
+    "mobile/hooks/useApiBase.ts",
+    "mobile/context/AppContext.tsx",
+    "mobile/components/SystemStatus.tsx",
+    "mobile/components/Terminal.tsx",
+    "mobile/components/PreviewPanel.tsx",
+    "mobile/app/(tabs)/terminal.tsx",
+    "mobile/app/(tabs)/settings.tsx",
+    "mobile/app/(tabs)/plugins.tsx"
+  ],
+  "resultadoEsperado": [
+    "App abre sem depender do servidor Replit",
+    "Modulos remotos nao quebram o app",
+    "APK pronto para testes locais"
+  ]
+}
+
+
+
+{
+  "projeto": "DevMobile",
+  "objetivo": "Desacoplar o app mobile do servidor Replit e preparar uma versão APK local",
+  "prioridades": [
+    {
+      "ordem": 1,
+      "titulo": "Limpeza estrutural",
+      "itens": [
+        "Remover mockup-sandbox",
+        "Remover mobile/.expo",
+        "Remover api-server/dist"
+      ]
+    },
+    {
+      "ordem": 2,
+      "titulo": "Desacoplamento de backend remoto",
+      "itens": [
+        "Revisar .env",
+        "Revisar useApiBase",
+        "Eliminar dominio remoto padrao",
+        "Criar fallback local/offline"
+      ]
+    },
+    {
+      "ordem": 3,
+      "titulo": "Desativacao controlada de recursos remotos",
+      "itens": [
+        "Terminal remoto",
+        "Preview remoto",
+        "GitHub via backend",
+        "Banco remoto",
+        "Busca web via backend",
+        "Proxy de IA"
+      ]
+    },
+    {
+      "ordem": 4,
+      "titulo": "Preparacao para APK",
+      "itens": [
+        "Revisar app.json",
+        "Revisar permissoes Android",
+        "Validar dependencias",
+        "Build com EAS"
+      ]
+    }
+  ],
+  "arquivosCriticos": [
+    "mobile/.env",
+    "mobile/hooks/useApiBase.ts",
+    "mobile/context/AppContext.tsx",
+    "mobile/components/SystemStatus.tsx",
+    "mobile/components/Terminal.tsx",
+    "mobile/components/PreviewPanel.tsx",
+    "mobile/app/(tabs)/terminal.tsx",
+    "mobile/app/(tabs)/settings.tsx",
+    "mobile/app/(tabs)/plugins.tsx"
+  ],
+  "resultadoEsperado": [
+    "App abre sem depender do servidor Replit",
+    "Modulos remotos nao quebram o app",
+    "APK pronto para testes locais"
+  ]
+}
+
+
+
+
+{
+  "tema": "VS Code local / code-server / editor simplificado",
+  "resumo": {
+    "editorLocalSimples": true,
+    "codeServerRealSemServidor": false,
+    "codeServerLocalComServidorNoCelular": true
+  },
+  "cenarios": [
+    {
+      "nome": "Editor visual estilo VS Code",
+      "viavel": true,
+      "requisitos": [
+        "componentes locais",
+        "editor embutido",
+        "arquivos locais"
+      ]
+    },
+    {
+      "nome": "code-server real sem nenhum servidor",
+      "viavel": false,
+      "motivo": "code-server precisa de um processo servindo a interface"
+    },
+    {
+      "nome": "code-server real com servidor local no celular",
+      "viavel": true,
+      "requisitos": [
+        "Termux ou processo local",
+        "porta local funcionando",
+        "acesso localhost",
+        "autenticacao/configuracao"
+      ]
+    }
+  ],
+  "arquivosDoProjetoRelacionados": [
+    "api-server/src/lib/codeServer.ts",
+    "mobile/components/VSCodeView.tsx",
+    "mobile/components/PreviewPanel.tsx",
+    "mobile/hooks/useApiBase.ts"
+  ],
+  "recomendacao": [
+    "Primeiro desacoplar do Replit",
+    "Depois manter apenas editor local",
+    "Por ultimo testar code-server local no celular"
+  ]
+}
+
+{
+  "name": "devmobile-local-plan",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Modelo documental para orientar a versao local do DevMobile",
+  "objetivo": {
+    "principal": "Rodar no celular sem depender do servidor Replit",
+    "prioridade": [
+      "editor local",
+      "arquivos locais",
+      "tarefas locais",
+      "configuracoes locais",
+      "modo offline",
+      "IA direta opcional",
+      "terminal local futuro",
+      "VS Code-like futuro"
+    ]
+  },
+  "modos": {
+    "local": {
+      "descricao": "Sem backend remoto",
+      "deveFuncionar": [
+        "editor",
+        "tarefas",
+        "arquivos locais",
+        "configuracoes"
+      ]
+    },
+    "remoto": {
+      "descricao": "Somente se houver backend configurado",
+      "recursos": [
+        "terminal remoto",
+        "preview remoto",
+        "code-server remoto",
+        "proxy IA",
+        "busca backend",
+        "github backend"
+      ]
+    }
+  },
+  "substituicoes": {
+    "vscodeRemoto": "editor local ou Monaco local",
+    "terminalRemoto": "Termux futuro ou modo desativado",
+    "apiReplit": "baseUrl configuravel ou null",
+    "previewServidor": "preview local quando possivel"
+  }
+}
+
+
+
+{
+  "name": "devmobile-local-base",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Pacote de referencia para reorganizacao da versao local do DevMobile",
+  "notes": {
+    "objetivo": "Servir como referencia documental, nao para substituir automaticamente o package.json atual",
+    "usarQuando": "Ao reorganizar dependencias para uma versao mais limpa do app"
+  },
+  "grupos": {
+    "manterProvavelmente": [
+      "expo",
+      "react",
+      "react-native",
+      "expo-router",
+      "react-native-safe-area-context",
+      "react-native-gesture-handler",
+      "@tanstack/react-query"
+    ],
+    "revisarSeDependemDeServidor": [
+      "react-native-webview",
+      "bibliotecas de terminal remoto",
+      "bibliotecas acopladas a preview remoto",
+      "clientes de API interna"
+    ],
+    "avaliarParaModoLocal": [
+      "sqlite",
+      "armazenamento local",
+      "integracao com termux",
+      "provedores de IA diretos"
+    ]
+  }
+}
+
+{
+  "projeto": "DevMobile",
+  "objetivo": "Desacoplar o app mobile do servidor Replit e preparar uma versão APK local",
+  "prioridades": [
+    {
+      "ordem": 1,
+      "titulo": "Limpeza estrutural",
+      "itens": [
+        "Remover mockup-sandbox",
+        "Remover mobile/.expo",
+        "Remover api-server/dist"
+      ]
+    },
+    {
+      "ordem": 2,
+      "titulo": "Desacoplamento de backend remoto",
+      "itens": [
+        "Revisar .env",
+        "Revisar useApiBase",
+        "Eliminar dominio remoto padrao",
+        "Criar fallback local/offline"
+      ]
+    },
+    {
+      "ordem": 3,
+      "titulo": "Desativacao controlada de recursos remotos",
+      "itens": [
+        "Terminal remoto",
+        "Preview remoto",
+        "GitHub via backend",
+        "Banco remoto",
+        "Busca web via backend",
+        "Proxy de IA"
+      ]
+    },
+    {
+      "ordem": 4,
+      "titulo": "Preparacao para APK",
+      "itens": [
+        "Revisar app.json",
+        "Revisar permissoes Android",
+        "Validar dependencias",
+        "Build com EAS"
+      ]
+    }
+  ],
+  "arquivosCriticos": [
+    "mobile/.env",
+    "mobile/hooks/useApiBase.ts",
+    "mobile/context/AppContext.tsx",
+    "mobile/components/SystemStatus.tsx",
+    "mobile/components/Terminal.tsx",
+    "mobile/components/PreviewPanel.tsx",
+    "mobile/app/(tabs)/terminal.tsx",
+    "mobile/app/(tabs)/settings.tsx",
+    "mobile/app/(tabs)/plugins.tsx"
+  ],
+  "resultadoEsperado": [
+    "App abre sem depender do servidor Replit",
+    "Modulos remotos nao quebram o app",
+    "APK pronto para testes locais"
+  ]
+}
+
+
+
+{
+  "projeto": "DevMobile",
+  "objetivo": "Desacoplar o app mobile do servidor Replit e preparar uma versão APK local",
+  "prioridades": [
+    {
+      "ordem": 1,
+      "titulo": "Limpeza estrutural",
+      "itens": [
+        "Remover mockup-sandbox",
+        "Remover mobile/.expo",
+        "Remover api-server/dist"
+      ]
+    },
+    {
+      "ordem": 2,
+      "titulo": "Desacoplamento de backend remoto",
+      "itens": [
+        "Revisar .env",
+        "Revisar useApiBase",
+        "Eliminar dominio remoto padrao",
+        "Criar fallback local/offline"
+      ]
+    },
+    {
+      "ordem": 3,
+      "titulo": "Desativacao controlada de recursos remotos",
+      "itens": [
+        "Terminal remoto",
+        "Preview remoto",
+        "GitHub via backend",
+        "Banco remoto",
+        "Busca web via backend",
+        "Proxy de IA"
+      ]
+    },
+    {
+      "ordem": 4,
+      "titulo": "Preparacao para APK",
+      "itens": [
+        "Revisar app.json",
+        "Revisar permissoes Android",
+        "Validar dependencias",
+        "Build com EAS"
+      ]
+    }
+  ],
+  "arquivosCriticos": [
+    "mobile/.env",
+    "mobile/hooks/useApiBase.ts",
+    "mobile/context/AppContext.tsx",
+    "mobile/components/SystemStatus.tsx",
+    "mobile/components/Terminal.tsx",
+    "mobile/components/PreviewPanel.tsx",
+    "mobile/app/(tabs)/terminal.tsx",
+    "mobile/app/(tabs)/settings.tsx",
+    "mobile/app/(tabs)/plugins.tsx"
+  ],
+  "resultadoEsperado": [
+    "App abre sem depender do servidor Replit",
+    "Modulos remotos nao quebram o app",
+    "APK pronto para testes locais"
+  ]
+}
+
+
+
+
+{
+  "tema": "VS Code local / code-server / editor simplificado",
+  "resumo": {
+    "editorLocalSimples": true,
+    "codeServerRealSemServidor": false,
+    "codeServerLocalComServidorNoCelular": true
+  },
+  "cenarios": [
+    {
+      "nome": "Editor visual estilo VS Code",
+      "viavel": true,
+      "requisitos": [
+        "componentes locais",
+        "editor embutido",
+        "arquivos locais"
+      ]
+    },
+    {
+      "nome": "code-server real sem nenhum servidor",
+      "viavel": false,
+      "motivo": "code-server precisa de um processo servindo a interface"
+    },
+    {
+      "nome": "code-server real com servidor local no celular",
+      "viavel": true,
+      "requisitos": [
+        "Termux ou processo local",
+        "porta local funcionando",
+        "acesso localhost",
+        "autenticacao/configuracao"
+      ]
+    }
+  ],
+  "arquivosDoProjetoRelacionados": [
+    "api-server/src/lib/codeServer.ts",
+    "mobile/components/VSCodeView.tsx",
+    "mobile/components/PreviewPanel.tsx",
+    "mobile/hooks/useApiBase.ts"
+  ],
+  "recomendacao": [
+    "Primeiro desacoplar do Replit",
+    "Depois manter apenas editor local",
+    "Por ultimo testar code-server local no celular"
+  ]
+}{
   "cli": {
     "version": ">= 16.0.0",
     "appVersionSource": "local"
